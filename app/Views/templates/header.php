@@ -77,15 +77,17 @@ $datos = $session->get();
                         <div class="menu-title">Mantenimiento</div>
                     </a>
                     <ul>
-                        <li> <a href="<?php echo base_url('medidas'); ?>"><i class="bx bx-right-arrow-alt"></i>Medidas</a>
+                        <!-- <li> <a href="<?php echo base_url('medidas'); ?>"><i class="bx bx-right-arrow-alt"></i>Medidas</a>
                         </li>
                         <li> <a href="<?php echo base_url('categorias'); ?>"><i class="bx bx-right-arrow-alt"></i>Categorias</a>
                         </li>
                         <li> <a href="<?php echo base_url('marcas'); ?>"><i class="bx bx-right-arrow-alt"></i>Marcas</a>
                         </li>
                         <li> <a href="<?php echo base_url('productos'); ?>"><i class="bx bx-right-arrow-alt"></i>Productos</a>
+                        </li> -->
+                        <li> <a href="<?php echo base_url('apps'); ?>"><i class="bx bx-right-arrow-alt"></i>Apps</a>
                         </li>
-                        <li> <a href="<?php echo base_url('unidades'); ?>"><i class="bx bx-right-arrow-alt"></i>Unidades</a>
+                        <li> <a href="<?php echo base_url('unidades'); ?>"><i class="bx bx-right-arrow-alt"></i>Unidades Académicas</a>
                         </li>
                     </ul>
                 </li>

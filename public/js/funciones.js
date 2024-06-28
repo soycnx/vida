@@ -1,6 +1,6 @@
 let t_user, t_userD, t_caja, t_cajaD, t_cli, t_cliD,
     t_med, t_medD, t_cat, t_catD, t_marca, t_marcaD, t_pro,
-    t_proD, neditor, t_h_c, t_h_v, t_unidad, t_unidadD;
+    t_proD, neditor, t_h_c, t_h_v, t_unidad, t_unidadD, t_app, t_appD;
 let myChart;
 document.addEventListener("DOMContentLoaded", function () {
     const language = {
@@ -544,6 +544,75 @@ document.addEventListener("DOMContentLoaded", function () {
         buttons,
         language
     });
+
+
+    //Unidades academicas
+    t_app = $('#tblapp').DataTable({
+        "aPreocesing": true,
+        "aServerSide": true,
+        "ajax": {
+            "url": "" + base_url + "/apps/listar",
+            "dataSrc": ""
+        },
+        "columns": [{
+            "data": "idapp"
+        },
+        {
+            "data": "nombre"
+        },
+        {
+            "data": "estado"
+        },
+        {
+            "data": "acciones"
+        }
+        ],
+        "resonsieve": true,
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [
+            [0, "desc"]
+        ],
+        "dom": "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons,
+        language
+    });
+    t_appD = $('#tblapp_r').DataTable({
+        "aPreocesing": true,
+        "aServerSide": true,
+        "ajax": {
+            "url": "" + base_url + "/apps/vaciar",
+            "dataSrc": ""
+        },
+        "columns": [{
+            "data": "idapp"
+        },
+        {
+            "data": "nombre"
+        },
+        {
+            "data": "estado"
+        },
+        {
+            "data": "acciones"
+        }
+        ],
+        "resonsieve": true,
+        "bDestroy": true,
+        "iDisplayLength": 10,
+        "order": [
+            [0, "desc"]
+        ],
+        "dom": "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons,
+        language
+    });
+
+
     //productos
     t_pro = $('#tblpro').DataTable({
         "aPreocesing": true,
@@ -1164,6 +1233,72 @@ function btnreingresar_marca(id) {
         }
     })
 }
+
+
+//Apps
+function btnEliminarApp(id) {
+    Swal.fire({
+        title: 'Esta seguro de eliminar?',
+        text: "La App no se eliminará de forma permanente, solo cambiará el estado a inactivo!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "/apps/eliminar/" + id;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse(this.responseText);
+                    Swal.fire(
+                        'Mensaje',
+                        res.mensaje,
+                        res.icono
+                    )
+                    t_marca.ajax.reload();
+                }
+            }
+
+        }
+    })
+}
+
+function btnreingresar_app(id) {
+    Swal.fire({
+        title: 'Esta seguro de reingresar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "/apps/restaurar/" + id;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse(this.responseText);
+                    Swal.fire(
+                        'Mensaje',
+                        res.mensaje,
+                        res.icono
+                    )
+                    t_marcaD.ajax.reload();
+                }
+            }
+
+        }
+    })
+}
+
 
 //Unidades academicas
 //marcas
