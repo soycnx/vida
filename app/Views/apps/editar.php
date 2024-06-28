@@ -20,8 +20,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label for="nombre">Nombre</label>
-                        <input type="hidden" value="<?php echo $marca['idapp'] ?>" name="id">
-                        <input type="text" class="form-control" placeholder="Nombre de la App" name="nombre" value="<?= set_value('nombre', $marca['nombre']) ?>">
+                        <input type="hidden" value="<?php echo $app['idapp'] ?>" name="id">
+                        <input type="text" class="form-control" placeholder="Nombre de la App" name="nombre" value="<?= set_value('nombre', $app['nombre']) ?>">
                         <?php if (isset($validation)) { ?>
                             <span class="text-danger font-weight-bold"><?php echo $validation->getError('nombre'); ?></span>
                         <?php } ?>

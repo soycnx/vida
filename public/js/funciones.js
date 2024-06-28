@@ -546,7 +546,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    //Unidades academicas
+    //Apps
     t_app = $('#tblapp').DataTable({
         "aPreocesing": true,
         "aServerSide": true,

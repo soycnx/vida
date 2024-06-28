@@ -40,8 +40,8 @@ class Apps extends BaseController{
             if ($data[$i]['estado'] == 1) {
                 $data[$i]['estado'] = '<span class="badge bg-success">Activo</span>';
                 $data[$i]['acciones'] = '<div class"text-center">
-                <a href="' . base_url("apps/editar/" . $data[$i]['idmarca']) . '" class="btn btn-dark"><i class="fas fa-edit"></i></a>
-                <button class="btn btn-danger" onclick="btnEliminarApp(' . $data[$i]['idmarca'] . ')"><i class="fas fa-trash-alt"></i></button>
+                <a href="' . base_url("apps/editar/" . $data[$i]['idapp']) . '" class="btn btn-dark"><i class="fas fa-edit"></i></a>
+                <button class="btn btn-danger" onclick="btnEliminarApp(' . $data[$i]['idapp'] . ')"><i class="fas fa-trash-alt"></i></button>
                 </div>';
             }
         }
@@ -53,7 +53,7 @@ class Apps extends BaseController{
         if ($this->request->getMethod() == 'post' && $this->validate($this->reglas)) {
             $nombre = $this->request->getPost('nombre');
             $data = $this->apps->save([
-                'marca' => $marca
+                'nombre' => $nombre
             ]);
             return redirect()->to(base_url() . '/apps')->with('message', 'App registrada con exíto.');
         } else {
